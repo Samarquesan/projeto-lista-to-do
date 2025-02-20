@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Todo from './components/Todo.jsx';
 import TodoForm from './components/TodoForm.jsx';
 import Search from './components/Search.jsx';
+import Filter from './components/Filter.jsx';
 
 import "./App.css";
 
@@ -61,11 +62,19 @@ function App() {
     <div className='app'>
       <h1>lista de Tarefas</h1>
       <Search search={search} setSearch={setSearch}/>
+      <Filter/>
       <div className='todo-list'>
-        {todos.filter((todo) => todo.text.toLowerCase().includes(search.toLowerCase())
+        {todos
+        .filter((todo) =>
+           todo.text.toLowerCase().includes(search.toLowerCase())
         )
         .map((todo) => (
-          <Todo key={todo.id} todo={todo} removeTodo={removeTodo} completeTodo={completeTodo}/>
+          <Todo 
+          key={todo.id} 
+          todo={todo} 
+          removeTodo={removeTodo} 
+          completeTodo={completeTodo}
+          />
         ))}
       </div>
       <TodoForm addTodo={addTodo}/>
